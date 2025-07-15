@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -35,28 +35,29 @@ export class CreateComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private produitService: ProduitService) { }
 
+  today = new Date();
   produitForm = this.fb.group({
     nom: ['', Validators.required],
-    numeroLot: [null, [Validators.required, Validators.min(1)]],
+    numeroLot: [null],
+    dateExpiration: [null, [this.optionalMinDateValidator(this.today)]],
     quantite: [null, [Validators.required, Validators.min(1)]],
     cathegorie: ['', Validators.required],
     emplacement: ['', Validators.required],
-    sourceSelection: ['Others'], // valeur sélectionnée (cerple/autres/custom)
-    source: [''], // valeur réelle, à enregistrer
+    source: ['Others'],
     description: ['', [Validators.required, Validators.minLength(10)]],
   });
-
+  todayString: string = this.today.toISOString().split('T')[0];
 
   ngOnInit(): void { }
 
   onSubmit() {
     if (this.produitForm.valid) {
       const raw = this.produitForm.getRawValue(); // inclut même les champs désactivés
-      const idUtilisateur = '001'
+      const utilisateurId = 'u-001'
 
       if (this.produitForm.valid) {
-        const produitData: Omit<Produit, 'id' | 'date'> = {
-          idUtilisateur,
+        const produitData: Omit<Produit, 'id' | 'dateCreation'> = {
+          utilisateurId,
           nom: raw.nom ?? '',
           numeroLot: raw.numeroLot ?? 0,
           quantite: raw.quantite ?? 0,
@@ -64,13 +65,26 @@ export class CreateComponent implements OnInit {
           emplacement: raw.emplacement ?? 'bloc1',
           source: raw.source ?? 'cerple',
           description: raw.description ?? '',
+          dateExpiration: raw.dateExpiration
         };
 
         this.produitService.createProduit(produitData).subscribe({
-          next: () => alert('Produit créé avec succès'),
+          next: () => {
+            alert('Produit créé avec succès')
+            this.produitForm.reset()
+          },
           error: () => alert('Erreur lors de la création'),
         });
       }
     }
+  }
+
+  optionalMinDateValidator(minDate: Date): ValidatorFn {
+    return (control: AbstractControl) => {
+      if (!control.value) return null; // Si vide, c'est valide
+
+      const selectedDate = new Date(control.value);
+      return selectedDate >= minDate ? null : { minDate: true };
+    };
   }
 }

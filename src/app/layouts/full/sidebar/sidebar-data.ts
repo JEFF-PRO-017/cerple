@@ -22,7 +22,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Liste Produits',
     iconName: 'list-details',
-    route: '/ui-components/tables',
+    route: '/produits/i',
     bgcolor: 'success',
   },
 

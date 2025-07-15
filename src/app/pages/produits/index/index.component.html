@@ -1,1 +1,20 @@
-<p>index works!</p>
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <mat-card-title class="f-w-600 f-s-16 m-b-3 mb-3"> Produits par Catégorie</mat-card-title>
+
+
+
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+            <mat-tab label="comprimée">
+                <app-produit-table cathegorie="comprimee"></app-produit-table>
+            </mat-tab>
+            <mat-tab label="kit">
+                <app-produit-table cathegorie="kit"></app-produit-table>
+            </mat-tab>
+            <mat-tab label="matériaux">
+                <app-produit-table cathegorie="marteriaux"></app-produit-table>
+            </mat-tab>
+        </mat-tab-group>
+
+    </mat-card-content>
+</mat-card>

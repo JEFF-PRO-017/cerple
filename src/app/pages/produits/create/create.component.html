@@ -21,7 +21,7 @@
                     <div class="col-md-6">
                         <mat-form-field class="w-100" appearance="outline">
                             <mat-label>Numéro de lot</mat-label>
-                            <input matInput type="number" formControlName="numeroLot" placeholder="Ex: 1007" />
+                            <input matInput type="text" formControlName="numeroLot" placeholder="Ex: 1007" />
                         </mat-form-field>
                     </div>
                 </div>
@@ -52,6 +52,18 @@
                         <mat-option value="bloc6">Bloc 6</mat-option>
                     </mat-select>
                 </mat-form-field>
+
+                <mat-form-field class="w-100 mb-3" appearance="outline">
+                    <mat-label>Date d'expiration</mat-label>
+                    <input matInput type="date" formControlName="dateExpiration" [min]="todayString" />
+
+                    <mat-error
+                        *ngIf="produitForm.get('dateExpiration')?.hasError('minDate') && produitForm.get('dateExpiration')?.touched">
+                        ❌ La date d'expiration ne peut pas être antérieure à aujourd’hui.
+                    </mat-error>
+                </mat-form-field>
+
+
             </div>
 
             <!-- 🧩 Bloc droit (Stock & Source) -->
@@ -66,7 +78,7 @@
 
                 <mat-form-field class="w-100" appearance="outline">
                     <mat-label>Source</mat-label>
-                    <input matInput formControlName="sourceSelection" placeholder="votre source" />
+                    <input matInput formControlName="source" placeholder="votre source" />
                 </mat-form-field>
             </div>
 

@@ -14,26 +14,44 @@ export interface Utilisateur {
 
 export interface Produit {
   id: string;
-  idUtilisateur: string;
-  date: Date;
-  numeroLot: number;
+  utilisateurId: string;
+  dateCreation: Date;
+  numeroLot?: number;
   nom: string;
   quantite: number;
   description: string;
   cathegorie: string;
   emplacement: string;
   source: string;
+  dateExpiration:any
 }
 
-export interface ProduitAvecUtilisateur extends Omit<Produit, 'idUtilisateur'> {
-  utilisateur: Utilisateur;
-}
+
 
 export interface TrackingProduit {
   id: string;
   idProduit: string;
   quantite: number;
-  date: Date;
+  dateCreation: Date;
   source: string;
   destination: string;
+}
+export interface QProduit {
+  id: string;
+  utilisateur: {
+     id: string;
+    nom: string;
+    avatar: string;
+    email: string;
+    role: string;
+  };
+  dateExpiration:any
+  date: Date;
+  numeroLot: number;
+  nom: string;
+  quantite: number;
+  description: string;
+  cathegorie: 'comprimee' | 'kit' | 'marteriaux';
+  emplacement: 'bloc1' | 'bloc2' | 'bloc3' | 'bloc4' | 'bloc5' | 'bloc6';
+  source: 'cerple' | 'autres';
 }

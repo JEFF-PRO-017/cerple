@@ -1,0 +1,113 @@
+<div class="table-responsive position-relative">
+
+    <!-- Message de chargement -->
+    . <div *ngIf="loading" class="p-5  mb-5  d-flex justify-content-center">
+        <div class="text-center py-5">
+            <mat-spinner diameter="40"></mat-spinner>
+        </div>
+    </div>
+
+    <!-- Tableau s'affiche si données -->
+    <table mat-table [dataSource]="dataSource" *ngIf="!loading && dataSource.data.length > 0" class="w-100">
+
+
+
+        <!-- Responsable -->
+        <ng-container matColumnDef="Responsable">
+            <th mat-header-cell *matHeaderCellDef>Responsable</th>
+            <td mat-cell *matCellDef="let element">
+                <div class="d-flex align-items-center rounded-pill">
+                    <img [src]="element.utilisateur.avatar" class="rounded-circle object-cover d-block" width="40"
+                        [alt]="element.utilisateur.nom" />
+                    <div>
+                        <div class="fw-bold">{{ element.utilisateur.nom }}</div>
+                        <small class="text-muted">{{ element.utilisateur.email }}</small>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <!-- Catégorie -->
+        <ng-container matColumnDef="produit">
+            <th mat-header-cell *matHeaderCellDef>Produit</th>
+            <td mat-cell *matCellDef="let element">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <div class="fw-bold">{{ element.nom }}</div>
+                        <small class="text-muted">{{"numero Lot : "+ element.numeroLot }}</small>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <!-- Emplacement -->
+        <ng-container matColumnDef="emplacement">
+            <th mat-header-cell *matHeaderCellDef>Emplacement</th>
+            <td mat-cell *matCellDef="let element">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <div class="fw-bold">{{ element.emplacement}}</div>
+                        <small class="text-muted">save : {{ element.date | date: 'dd/MM/yyyy' }}</small>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+
+
+        <!-- Emplacement -->
+        <ng-container matColumnDef="quantite">
+            <th mat-header-cell *matHeaderCellDef>Qté</th>
+            <td mat-cell *matCellDef="let element">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <div class="fw-bold">{{ element.quantite }}</div>
+                        <small class="text-muted">périme le : {{ element.date | date: 'dd/MM/yyyy' }}</small>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+
+        <!-- description -->
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+        </ng-container>
+
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>visibility</mat-icon>
+                        <span>Voir plus</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Faire une sortie</span>
+                    </button>
+                </mat-menu>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <!-- Message si vide -->
+    <div *ngIf="!loading && dataSource.data.length === 0" class="text-center p-5 text-muted">
+        <mat-icon style="font-size: 48px; opacity: 0.3;">inventory_2</mat-icon>
+        <div class="mt-2 fs-6 fst-italic">Aucun produit trouvé dans cette catégorie.</div>
+    </div>
+</div>
+
+<!-- Pagination -->
+<mat-paginator [length]="total" [pageSize]="pageSize" [pageIndex]="pageIndex" [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons (page)="onPageChange($event)">
+</mat-paginator>

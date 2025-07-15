@@ -1,1 +1,98 @@
-{}
+{
+  "produits": [
+    {
+      "id": "bc722819-5f8a-4d08-988a-e76a86afc6c6",
+      "utilisateurId": "u-001",
+      "nom": "Sunt porro consequat",
+      "numeroLot": 54,
+      "quantite": 100,
+      "cathegorie": "kit",
+      "emplacement": "bloc3",
+      "source": "",
+      "description": "Qui laborum Id iur",
+      "date": "2025-07-15T04:52:56.288Z"
+    },
+    {
+      "id": "90e308ac-355a-4e8a-9621-5522af1f4f5c",
+      "utilisateurId": "u-001",
+      "nom": "cvvb",
+      "numeroLot": "2334cv",
+      "quantite": 123,
+      "cathegorie": "kit",
+      "emplacement": "bloc3",
+      "source": "oms",
+      "description": "dfgghjkkm ",
+      "dateExpiration": "2689-05-12",
+      "dateCreation": "2025-07-15T08:24:47.320Z"
+    },
+    {
+      "id": "67503eaa-9d88-48db-b0ef-19c9b68101ae",
+      "utilisateurId": "u-001",
+      "nom": "ibu 250",
+      "numeroLot": "12e43",
+      "quantite": 540,
+      "cathegorie": "comprimee",
+      "emplacement": "bloc4",
+      "source": "Others",
+      "description": "pour personne ",
+      "dateExpiration": "2026-04-12",
+      "dateCreation": "2025-07-15T08:27:41.176Z"
+    },
+    {
+      "id": "9f7c3b0d-d158-473f-8f87-07b1d4e41ca6",
+      "utilisateurId": "u-001",
+      "nom": "moto",
+      "numeroLot": "12fs",
+      "quantite": 245,
+      "cathegorie": "marteriaux",
+      "emplacement": "bloc2",
+      "source": "opr",
+      "description": "destine pour courses",
+      "dateExpiration": null,
+      "dateCreation": "2025-07-15T08:29:36.082Z"
+    }
+  ],
+  "trackingProduits": [
+    {
+      "id": "75fb780a-9325-40a3-ba21-b85697980e8b",
+      "idProduit": "bc722819-5f8a-4d08-988a-e76a86afc6c6",
+      "quantite": 100,
+      "date": "2025-07-15T04:52:56.288Z",
+      "source": "",
+      "destination": "cerple"
+    },
+    {
+      "id": "9fca092b-6645-4618-b2ae-9ef3d73bd4be",
+      "idProduit": "90e308ac-355a-4e8a-9621-5522af1f4f5c",
+      "quantite": 123,
+      "dateCreation": "2025-07-15T08:24:47.320Z",
+      "source": "oms",
+      "destination": "cerple"
+    },
+    {
+      "id": "f930b6f7-7d91-43c5-9f26-95e6c2cda218",
+      "idProduit": "67503eaa-9d88-48db-b0ef-19c9b68101ae",
+      "quantite": 540,
+      "dateCreation": "2025-07-15T08:27:41.176Z",
+      "source": "Others",
+      "destination": "cerple"
+    },
+    {
+      "id": "ba262795-142e-4d67-b738-1a2eb211a738",
+      "idProduit": "9f7c3b0d-d158-473f-8f87-07b1d4e41ca6",
+      "quantite": 245,
+      "dateCreation": "2025-07-15T08:29:36.082Z",
+      "source": "opr",
+      "destination": "cerple"
+    }
+  ],
+  "utilisateurs": [
+    {
+      "id": "u-001",
+      "nom": "Nazir",
+      "email": "nazir@example.com",
+      "avatar": "/assets/images/profile/user-1.jpg",
+      "role": "admin"
+    }
+  ]
+}
