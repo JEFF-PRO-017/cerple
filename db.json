@@ -5,7 +5,7 @@
       "utilisateurId": "u-001",
       "nom": "Sunt porro consequat",
       "numeroLot": 54,
-      "quantite": 100,
+      "quantite": 0,
       "cathegorie": "kit",
       "emplacement": "bloc3",
       "source": "",
@@ -17,7 +17,7 @@
       "utilisateurId": "u-001",
       "nom": "cvvb",
       "numeroLot": "2334cv",
-      "quantite": 123,
+      "quantite": 0,
       "cathegorie": "kit",
       "emplacement": "bloc3",
       "source": "oms",
@@ -30,7 +30,7 @@
       "utilisateurId": "u-001",
       "nom": "ibu 250",
       "numeroLot": "12e43",
-      "quantite": 540,
+      "quantite": 359,
       "cathegorie": "comprimee",
       "emplacement": "bloc4",
       "source": "Others",
@@ -43,7 +43,7 @@
       "utilisateurId": "u-001",
       "nom": "moto",
       "numeroLot": "12fs",
-      "quantite": 245,
+      "quantite": 200,
       "cathegorie": "marteriaux",
       "emplacement": "bloc2",
       "source": "opr",
@@ -57,7 +57,7 @@
       "id": "75fb780a-9325-40a3-ba21-b85697980e8b",
       "idProduit": "bc722819-5f8a-4d08-988a-e76a86afc6c6",
       "quantite": 100,
-      "date": "2025-07-15T04:52:56.288Z",
+      "dateCreation": "2025-07-15T04:52:56.288Z",
       "source": "",
       "destination": "cerple"
     },
@@ -84,6 +84,118 @@
       "dateCreation": "2025-07-15T08:29:36.082Z",
       "source": "opr",
       "destination": "cerple"
+    },
+    {
+      "id": "f5b60361-7b74-4608-9c4d-a5e7ee83d49c",
+      "idProduit": "67503eaa-9d88-48db-b0ef-19c9b68101ae",
+      "quantite": 3,
+      "dateCreation": "2025-07-15T21:36:58.242Z",
+      "source": "cerple",
+      "destination": "hopital_central"
+    },
+    {
+      "id": "976afcf9-b0e1-459d-ab7e-cfcb9344c568",
+      "idProduit": "bc722819-5f8a-4d08-988a-e76a86afc6c6",
+      "quantite": 93,
+      "dateCreation": "2025-07-15T21:45:42.845Z",
+      "source": "cerple",
+      "destination": "pharmacie_interne"
+    },
+    {
+      "id": "94353e24-9deb-44b3-90fd-e39ed5bb8fed",
+      "idProduit": "67503eaa-9d88-48db-b0ef-19c9b68101ae",
+      "quantite": 12,
+      "dateCreation": "2025-07-15T21:47:10.650Z",
+      "source": "cerple",
+      "destination": "bloc_operatoire"
+    },
+    {
+      "id": "370d3d1f-b579-47a6-90b0-e600ce7df2e9",
+      "idProduit": "67503eaa-9d88-48db-b0ef-19c9b68101ae",
+      "quantite": 21,
+      "dateCreation": "2025-07-15T21:47:23.770Z",
+      "source": "cerple",
+      "destination": "don"
+    },
+    {
+      "id": "183a9ebe-506f-4385-9183-5f830eec6174",
+      "idProduit": "67503eaa-9d88-48db-b0ef-19c9b68101ae",
+      "quantite": 122,
+      "dateCreation": "2025-07-15T21:47:35.228Z",
+      "source": "cerple",
+      "destination": "pharmacie_interne"
+    },
+    {
+      "id": "68d1266b-981e-4f2d-b0c5-a429c84c35e8",
+      "idProduit": "67503eaa-9d88-48db-b0ef-19c9b68101ae",
+      "quantite": 1,
+      "dateCreation": "2025-07-15T21:47:51.940Z",
+      "source": "cerple",
+      "destination": "pharmacie_interne"
+    },
+    {
+      "id": "85bf9b14-39de-45bc-9154-9c74618e6f79",
+      "idProduit": "67503eaa-9d88-48db-b0ef-19c9b68101ae",
+      "quantite": 12,
+      "dateCreation": "2025-07-15T21:48:04.301Z",
+      "source": "cerple",
+      "destination": "bloc_operatoire"
+    },
+    {
+      "id": "61328e58-8402-48db-9a56-2e188772e101",
+      "idProduit": "67503eaa-9d88-48db-b0ef-19c9b68101ae",
+      "quantite": 10,
+      "dateCreation": "2025-07-16T05:43:22.208Z",
+      "source": "cerple",
+      "destination": "hopital_central"
+    },
+    {
+      "id": "d29526e0-c30f-4845-9ff3-845698014933",
+      "idProduit": "9f7c3b0d-d158-473f-8f87-07b1d4e41ca6",
+      "quantite": 12,
+      "dateCreation": "2025-07-16T06:34:45.035Z",
+      "source": "cerple",
+      "destination": "bloc_operatoire"
+    },
+    {
+      "id": "b647b146-7a46-44ce-9ad0-ae0fddc92213",
+      "idProduit": "9f7c3b0d-d158-473f-8f87-07b1d4e41ca6",
+      "quantite": 10,
+      "dateCreation": "2025-07-16T06:35:01.412Z",
+      "source": "cerple",
+      "destination": "urgence"
+    },
+    {
+      "id": "94f4183f-1e2b-497a-a593-cbfb28f821f6",
+      "idProduit": "9f7c3b0d-d158-473f-8f87-07b1d4e41ca6",
+      "quantite": 11,
+      "dateCreation": "2025-07-16T06:35:21.920Z",
+      "source": "cerple",
+      "destination": "don"
+    },
+    {
+      "id": "573ac70a-7fde-4965-89ab-0b049edc1498",
+      "idProduit": "90e308ac-355a-4e8a-9621-5522af1f4f5c",
+      "quantite": 123,
+      "dateCreation": "2025-07-16T06:37:54.447Z",
+      "source": "cerple",
+      "destination": "hopital_central"
+    },
+    {
+      "id": "96fd68bd-b84d-4ffa-a94b-00900b4c1d61",
+      "idProduit": "bc722819-5f8a-4d08-988a-e76a86afc6c6",
+      "quantite": 7,
+      "dateCreation": "2025-07-16T06:38:09.107Z",
+      "source": "cerple",
+      "destination": "hopital_general"
+    },
+    {
+      "id": "e2611fd4-e76f-4d55-ba08-4d8ee37c9cea",
+      "idProduit": "9f7c3b0d-d158-473f-8f87-07b1d4e41ca6",
+      "quantite": 12,
+      "dateCreation": "2025-07-16T15:54:14.299Z",
+      "source": "cerple",
+      "destination": "gynecologie"
     }
   ],
   "utilisateurs": [

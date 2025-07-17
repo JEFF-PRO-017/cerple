@@ -63,5 +63,6 @@ const PRODUCT_DATA: productsData[] = [
 export class AppTablesComponent {
   // table 1
   displayedColumns1: string[] = ['assigned', 'name', 'priority', 'budget'];
-  dataSource1 = PRODUCT_DATA;
+  // dataSource1 = PRODUCT_DATA;
+  dataSource1 = [];
 }

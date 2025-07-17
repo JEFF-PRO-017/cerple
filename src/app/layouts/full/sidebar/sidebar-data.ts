@@ -42,107 +42,107 @@ export const navItems: NavItem[] = [
     bgcolor: 'success',
   },
 
-  {
-    navCap: 'Ui OTHERS',
-  },
+  // {
+  //   navCap: 'Ui OTHERS',
+  // },
 
-  {
-    displayName: 'Badge',
-    iconName: 'archive',
-    route: '/ui-components/badge',
-    bgcolor: 'warning',
-  },
-  {
-    displayName: 'Chips',
-    iconName: 'info-circle',
-    route: '/ui-components/chips',
-    bgcolor: 'success',
-  },
-  {
-    displayName: 'Lists',
-    iconName: 'list-details',
-    route: '/ui-components/lists',
-    bgcolor: 'error',
-  },
-  {
-    displayName: 'Menu',
-    iconName: 'file-text',
-    route: '/ui-components/menu',
-    bgcolor: 'primary',
-  },
-  {
-    displayName: 'Tooltips',
-    iconName: 'file-text-ai',
-    route: '/ui-components/tooltips',
-    bgcolor: 'secondary',
-  },
-  {
-    displayName: 'Forms',
-    iconName: 'clipboard-text',
-    route: '/ui-components/forms',
-    bgcolor: 'warning',
-  },
-  {
-    displayName: 'Tables',
-    iconName: 'table',
-    route: '/ui-components/tables',
-    bgcolor: 'success',
-  },
-
-
-  {
-    navCap: 'Extra',
-  },
-  {
-    displayName: 'Icons',
-    iconName: 'mood-smile',
-    route: '/extra/icons',
-    bgcolor: 'error',
-  },
-  {
-    displayName: 'Sample Page',
-    iconName: 'brand-dribbble',
-    route: '/extra/sample-page',
-    bgcolor: 'primary',
-  },
-  {
-    navCap: 'Forms',
-  },
+  // {
+  //   displayName: 'Badge',
+  //   iconName: 'archive',
+  //   route: '/ui-components/badge',
+  //   bgcolor: 'warning',
+  // },
+  // {
+  //   displayName: 'Chips',
+  //   iconName: 'info-circle',
+  //   route: '/ui-components/chips',
+  //   bgcolor: 'success',
+  // },
+  // {
+  //   displayName: 'Lists',
+  //   iconName: 'list-details',
+  //   route: '/ui-components/lists',
+  //   bgcolor: 'error',
+  // },
+  // {
+  //   displayName: 'Menu',
+  //   iconName: 'file-text',
+  //   route: '/ui-components/menu',
+  //   bgcolor: 'primary',
+  // },
+  // {
+  //   displayName: 'Tooltips',
+  //   iconName: 'file-text-ai',
+  //   route: '/ui-components/tooltips',
+  //   bgcolor: 'secondary',
+  // },
+  // {
+  //   displayName: 'Forms',
+  //   iconName: 'clipboard-text',
+  //   route: '/ui-components/forms',
+  //   bgcolor: 'warning',
+  // },
+  // {
+  //   displayName: 'Tables',
+  //   iconName: 'table',
+  //   route: '/ui-components/tables',
+  //   bgcolor: 'success',
+  // },
 
 
-  {
-    navCap: 'Auth',
-  },
-  {
-    displayName: 'Login',
-    iconName: 'login',
-    bgcolor: 'secondary',
-    route: '/authentication',
-    children: [
-      {
-        displayName: 'Login',
-        iconName: 'point',
-        bgcolor: 'tranparent',
-        route: '/authentication/login',
-      },
+  // {
+  //   navCap: 'Extra',
+  // },
+  // {
+  //   displayName: 'Icons',
+  //   iconName: 'mood-smile',
+  //   route: '/extra/icons',
+  //   bgcolor: 'error',
+  // },
+  // {
+  //   displayName: 'Sample Page',
+  //   iconName: 'brand-dribbble',
+  //   route: '/extra/sample-page',
+  //   bgcolor: 'primary',
+  // },
+  // {
+  //   navCap: 'Forms',
+  // },
 
-    ],
-  },
-  {
-    displayName: 'Register',
-    iconName: 'user-plus',
-    bgcolor: 'warning',
-    route: '/authentication',
-    children: [
-      {
-        displayName: 'Register',
-        iconName: 'point',
-        bgcolor: 'tranparent',
-        route: '/authentication/register',
-      },
 
-    ],
-  },
+  // {
+  //   navCap: 'Auth',
+  // },
+  // {
+  //   displayName: 'Login',
+  //   iconName: 'login',
+  //   bgcolor: 'secondary',
+  //   route: '/authentication',
+  //   children: [
+  //     {
+  //       displayName: 'Login',
+  //       iconName: 'point',
+  //       bgcolor: 'tranparent',
+  //       route: '/authentication/login',
+  //     },
+
+  //   ],
+  // },
+  // {
+  //   displayName: 'Register',
+  //   iconName: 'user-plus',
+  //   bgcolor: 'warning',
+  //   route: '/authentication',
+  //   children: [
+  //     {
+  //       displayName: 'Register',
+  //       iconName: 'point',
+  //       bgcolor: 'tranparent',
+  //       route: '/authentication/register',
+  //     },
+
+  //   ],
+  // },
 
 
 ];

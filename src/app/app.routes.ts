@@ -9,7 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/authentication/login',
         pathMatch: 'full',
       },
       {
@@ -20,7 +20,7 @@ export const routes: Routes = [
        {
         path: 'produits',
         loadChildren: () =>
-          import('./pages/produits/produits.routes').then((m)=>m.PeoduitsRoutes),
+          import('./pages/produits/produits.routes').then((m)=>m.ProduitsRoutes),
       },
       {
         path: 'ui-components',

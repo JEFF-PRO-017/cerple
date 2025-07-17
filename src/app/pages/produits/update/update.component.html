@@ -1,0 +1,100 @@
+<ng-container *ngIf="!isLoading ; else loading">
+    <mat-card class="cardWithShadow theme-card">
+        <mat-card-header>
+            <mat-card-title class="m-b-0">📦 Faire Des sorties du Stock</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="b-t-1">
+            <form (ngSubmit)="onSubmit()" [formGroup]="produitForm" class="row g-4">
+
+                <!-- 🧩 Bloc du haut -->
+                <div class="col-12">
+                    <h6 class="text-primary fw-bold">Informations générales</h6>
+                    <p class="text-muted fst-italic">Données d'identification du produit</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100" appearance="outline">
+                                <mat-label>Nom du produit</mat-label>
+                                <input matInput formControlName="nom" readonly />
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100" appearance="outline">
+                                <mat-label>Numéro de lot</mat-label>
+                                <input matInput formControlName="numeroLot" readonly />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🧩 Bloc gauche (Classification) -->
+                <div class="col-lg-6">
+                    <h6 class="text-primary fw-bold">Classification</h6>
+                    <p class="text-muted fst-italic">Catégorisation logistique du produit</p>
+
+                    <mat-form-field class="w-100 mb-3" appearance="outline">
+                        <mat-label>Catégorie</mat-label>
+                        <input matInput formControlName="cathegorie" readonly />
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100 mb-3" appearance="outline">
+                        <mat-label>Emplacement</mat-label>
+                        <input matInput formControlName="emplacement" readonly />
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100 mb-3" appearance="outline">
+                        <mat-label>Date d'expiration</mat-label>
+                        <input matInput type="date" formControlName="dateExpiration" readonly />
+                    </mat-form-field>
+                </div>
+
+                <!-- 🧩 Bloc droit (Stock & Source) -->
+                <div class="col-lg-6">
+                    <h6 class="text-primary fw-bold">Quantité et Origine</h6>
+                    <p class="text-muted fst-italic">Destination et quantité à sortie</p>
+
+                    <mat-form-field class="w-100 mb-3" appearance="outline">
+                        <mat-label>Quantité</mat-label>
+                        <input matInput type="number" formControlName="quantite" />
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Destination</mat-label>
+                        <mat-select matInput formControlName="destination">
+                            <mat-option *ngFor="let dest of destinations"
+                                [value]="dest.value">{{dest.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <!-- 📝 Description -->
+                <div class="col-12">
+                    <h6 class="text-primary fw-bold">Description</h6>
+                    <p class="text-muted fst-italic">Détails sur l’état ou l’usage du produit</p>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <textarea matInput formControlName="description" rows="3" readonly></textarea>
+                    </mat-form-field>
+                </div>
+
+                <!-- 🔘 Boutons -->
+                <div class="col-12 d-flex justify-content-end">
+                    <button mat-flat-button color="primary" [disabled]="produitForm.invalid">
+                        💾 Enregistrer
+                    </button>
+                    <button mat-stroked-button color="warn" class="ms-3" type="button" (click)="produitForm.reset()">
+                        ↩️ Annuler
+                    </button>
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
+
+<!-- ⏳ Spinner pendant le chargement -->
+<ng-template #loading>
+    <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
+        <mat-spinner diameter="50" strokeWidth="4" color="primary"></mat-spinner>
+    </div>
+</ng-template>

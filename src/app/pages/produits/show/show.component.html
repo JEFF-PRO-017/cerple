@@ -1,1 +1,98 @@
-<p>show works!</p>
+<div class="row">
+
+
+    <div class="col-lg-6">
+        <mat-card class="cardWithShadow">
+            <mat-card-content class="p-y-24">
+                <mat-card-title>Historique de mouvements</mat-card-title>
+                <span class="f-s-14">Tracking du produit</span>
+                <div class="timeline m-t-24 m-b-24 ">
+
+                    <ng-container *ngFor="let stat of stats2">
+                        <div class="timeline-item d-flex overflow-hidden">
+                            <div class="time text-right f-s-14 text-muted">
+                                {{ stat.dateCreation | date:'EEE dd MMMM yyyy HH:mm' }}</div>
+                            <div class="point d-flex align-items-center">
+                                <span class="timeline-badge border-primary m-y-8"></span>
+                                <span class="timline-border d-block"></span>
+                            </div>
+
+                            <div class="desc">
+                                <span class="lh-20 f-s-14">{{stat.quantite}} unités - Source: {{stat.source}} →
+                                    Destination: {{stat.destination}}</span>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <ng-template #noTracking>
+                        <div class="text-center text-muted mt-4">
+                            💤 Aucun mouvement enregistré pour ce produit.
+                        </div>
+                    </ng-template>
+                </div>
+
+                <!-- PAGINATEUR -->
+                <mat-paginator   [length]="totalItems" [pageSize]="pageSize" (page)="onPageChange($event)">
+                </mat-paginator>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+    <div class="col-lg-6">
+
+        <!-- <mat-card-title class="text-primary f-s-18 mb-3">🧾 Détails du produit</mat-card-title> -->
+
+        <mat-card class="b-1 shadow-none">
+
+
+            <mat-card-content class="b-t-1 mt-2">
+                <mat-list>
+                    <mat-list-item lines="3">
+                        <span matListItemTitle class="f-s-16 f-w-600"> {{ produit.nom }}</span>
+                        <span class="f-s-14 text-muted">
+                            Qté: {{ produit.quantite }} | Lot: {{ produit.numeroLot }} | Catégorie: {{
+                            produit.cathegorie | titlecase }}
+                        </span>
+                        <span class="f-s-14">
+                            {{ produit.description }}
+                        </span>
+                    </mat-list-item>
+
+                    <mat-list-item lines="3">
+                        <span matListItemTitle class="f-s-16 f-w-600">Emplacement</span>
+                        <span class="f-s-14 text-muted">
+                            {{ produit.emplacement | titlecase }}
+                        </span>
+                        <span class="f-s-14">
+                            Source: {{ produit.source || 'Non précisée' }}
+                        </span>
+                    </mat-list-item>
+
+                    <mat-list-item lines="3">
+                        <span matListItemTitle class="f-s-16 f-w-600">🕒 Date D'enregistrement</span>
+                        <span class="f-s-14">
+                            {{ produit.date | date:'EEE d MMM yyyy HH:mm' }}
+                        </span>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+
+            <mat-card-header>
+                <div class="d-flex align-items-center">
+                    <img mat-card-avatar [src]="produit.utilisateur.avatar" alt="Avatar" width="48" height="48"
+                        class="rounded-circle mr-2" />
+                    <div>
+                        <mat-card-title class="f-s-16 f-w-600">{{ produit.utilisateur.nom }}</mat-card-title>
+                        <mat-card-subtitle class="text-muted f-s-13">{{ produit.utilisateur.email }} — {{
+                            produit.utilisateur.role | titlecase }}</mat-card-subtitle>
+                    </div>
+                </div>
+            </mat-card-header>
+
+            <div class="col-12 d-flex justify-content-start m-b-24">
+                <button mat-stroked-button color="warn" class="ms-3" type="button" (click)="out()">Faire une Sortie
+                </button>
+            </div>
+        </mat-card>
+    </div>
+</div>

@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { QProduit } from 'src/app/pages/produits/interfaces';
 import { ProduitService } from 'src/app/pages/produits/produit.service';
@@ -36,7 +37,10 @@ export class ProduitTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private produitService: ProduitService) { }
+  constructor(
+    private produitService: ProduitService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadProduits();
@@ -59,5 +63,12 @@ export class ProduitTableComponent implements OnInit {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.loadProduits();
+  }
+  
+  viewmore(produitId: string) {
+      this.router.navigateByUrl(`produits/${produitId}`)
+  }
+  out(produitId: string) {
+      this.router.navigateByUrl(`produits/i/${produitId}`)
   }
 }
