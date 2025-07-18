@@ -24,7 +24,7 @@ export class AppBlogComponent {
   constructor() { }
 
   productcards: productcards[] = [
-    {
+    /*{
       id: 1,
       imgSrc: '/assets/images/products/p1.jpg',
       title: 'Super Games',
@@ -51,6 +51,6 @@ export class AppBlogComponent {
       title: 'Glossy Solution',
       price: '285',
       rprice: '375',
-    },
+    }, */ 
   ];
 }
