@@ -23,7 +23,7 @@ export interface Produit {
   cathegorie: string;
   emplacement: string;
   source: string;
-  dateExpiration:any
+  dateExpiration: any
 }
 
 
@@ -39,13 +39,13 @@ export interface TrackingProduit {
 export interface QProduit {
   id: string;
   utilisateur: {
-     id: string;
+    id: string;
     nom: string;
     avatar: string;
     email: string;
     role: string;
   };
-  dateExpiration:any
+  dateExpiration: any
   date: Date;
   numeroLot: number;
   nom: string;
@@ -54,4 +54,21 @@ export interface QProduit {
   cathegorie: 'comprimee' | 'kit' | 'marteriaux';
   emplacement: 'bloc1' | 'bloc2' | 'bloc3' | 'bloc4' | 'bloc5' | 'bloc6';
   source: 'cerple' | 'autres';
+}
+export interface countProduits {
+  total: number,
+  cathegorie?: {
+    kit?: number,
+    comprimee?: number,
+    marteriaux?: number
+  }
+}
+
+export interface ProduitsParMoisAvecTotal {
+  total: number;
+  mois1: number;
+  mois2: number;
+  mois3: number;
+  mois4: number;
+  mois5: number;
 }

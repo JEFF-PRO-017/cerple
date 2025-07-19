@@ -1,9 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { TablerIconsModule } from 'angular-tabler-icons';
+import { MaterialModule } from 'src/app/material.module';
+import { Produit } from 'src/app/pages/produits/interfaces';
+import { ProduitService } from 'src/app/pages/produits/produit.service';
 
 interface stats {
   id: number;
@@ -26,11 +31,27 @@ interface stats2 {
 
 @Component({
   selector: 'app-upcoming-schedules',
-  imports: [MatCardModule, MatChipsModule, TablerIconsModule, MatButtonModule, MatIconModule],
+  imports: [MatCardModule, MatChipsModule, TablerIconsModule, MatButtonModule, MatIconModule,
+    CommonModule, MatMenuModule, MaterialModule
+  ],
   templateUrl: './upcoming-schedules.component.html',
 })
 export class AppUpcomingSchedulesComponent {
-  constructor() { }
+  produitsFaibleQuantite: Produit[] = [];
+
+  constructor(private produitService: ProduitService) { }
+
+  ngOnInit(): void {
+    this.produitService.getTop5ProduitsFaibleQuantiteNonExpire().subscribe({
+      next: (produits) => {
+        this.produitsFaibleQuantite = produits;
+        console.log('Produits avec faible quantité non expirés :', produits);
+      },
+      error: (err) => {
+        console.error('Erreur de récupération :', err);
+      }
+    });
+  }
 
   stats: stats[] = [
     {

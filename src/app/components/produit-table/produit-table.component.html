@@ -47,7 +47,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <div class="fw-bold">{{ element.emplacement}}</div>
-                        <small class="text-muted">save : {{ element.date | date: 'dd/MM/yyyy' }}</small>
+                        <small class="text-muted">save : {{ element.dateCreation | date: 'dd/MM/yyyy' }}</small>
                     </div>
                 </div>
             </td>
@@ -62,7 +62,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <div class="fw-bold">{{ element.quantite }}</div>
-                        <small class="text-muted">périme le : {{ element.date | date: 'dd/MM/yyyy' }}</small>
+                        <small class="text-muted">périme le : {{ element.dateExpiration | date: 'dd/MM/yyyy' }}</small>
                     </div>
                 </div>
             </td>

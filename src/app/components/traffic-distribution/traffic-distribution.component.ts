@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +20,8 @@ import {
   ApexResponsive,
   NgApexchartsModule,
 } from 'ng-apexcharts';
+import { ProduitService } from 'src/app/pages/produits/produit.service';
+import { countProduits } from 'src/app/pages/produits/interfaces';
 
 export interface trafficdistributionChart {
   series: ApexAxisChartSeries;
@@ -41,18 +43,37 @@ export interface trafficdistributionChart {
   imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule],
   templateUrl: './traffic-distribution.component.html',
 })
-export class AppTrafficDistributionComponent {
+export class AppTrafficDistributionComponent implements OnInit {
 
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
 
   public trafficdistributionChart!: Partial<trafficdistributionChart> | any;
 
+  produitsPeremption!: countProduits;
+  produitsValide!: countProduits
 
-  constructor() {
+  constructor(private produitService: ProduitService) { }
+ 
+  ngOnInit(): void {
+    this.produitService.getTotalProduitValide().subscribe({
+      next: (resultat) => {
+        this.produitsValide = resultat;
+        this.chartStock()
+        console.log('Produits en voie de péremption :', resultat);
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération des produits en voie de péremption :', err);
+      }
+    });
+
+  }
+
+
+  chartStock() {
 
     this.trafficdistributionChart = {
-      series: [5368, 3500, 4106],
-      labels: ['5368', 'Refferal Traffic', 'Oragnic Traffic'],
+      series: [this.produitsValide.cathegorie?.kit??0, this.produitsValide.cathegorie?.comprimee??0, this.produitsValide.cathegorie?.marteriaux??0],
+      labels: ['K', 'C', 'M'],
       chart: {
         type: 'donut',
         fontFamily: "inherit",
@@ -62,7 +83,7 @@ export class AppTrafficDistributionComponent {
         },
         height: 160,
       },
-      colors: ['#e7ecf0', '#fb977d', '#0085db'],
+      colors: ['#4bd08b', '#fb977d', '#0085db'],
       plotOptions: {
         pie: {
           donut: {
@@ -107,6 +128,5 @@ export class AppTrafficDistributionComponent {
         enabled: false,
       },
     };
-
   }
 }

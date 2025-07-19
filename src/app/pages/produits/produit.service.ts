@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { forkJoin, map, Observable } from 'rxjs';
-import { Produit, TrackingProduit, QProduit, Utilisateur } from './interfaces';
+import { Produit, TrackingProduit, QProduit, Utilisateur, countProduits, ProduitsParMoisAvecTotal } from './interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class ProduitService {
@@ -94,10 +94,10 @@ export class ProduitService {
     );
   }
 
-    getProduitsParId(id: string): Observable<QProduit[]> {
+  getProduitsParId(id: string): Observable<QProduit[]> {
     const params = new HttpParams()
       .set('id', id)
-     
+
 
     const produits$ = this.http.get<Produit[]>(this.produitUrl, { params });
     const utilisateurs$ = this.http.get<Utilisateur[]>(this.utilisateurUrl);
@@ -136,6 +136,94 @@ export class ProduitService {
 
     return this.http.get<any[]>(this.trackingUrl, { params }).pipe(
       map((trackings) => trackings.length)
+    );
+  }
+
+  getTotalProduitValide(): Observable<countProduits> {
+    return this.http.get<any[]>(this.produitUrl).pipe(
+      map(produits => this.traiterProduits(produits))
+    );
+  }
+
+  traiterProduits(produits: any[]): countProduits {
+    const maintenant = new Date();
+    const dateLimite = new Date();
+    dateLimite.setMonth(maintenant.getMonth() + 5); // il y a 5 mois
+
+    const produitsRecents = produits.filter(p => new Date(p.dateExpiration) > dateLimite || !p.dateExpiration);
+
+    const cathegorie: { [key: string]: number } = {};
+    produitsRecents.forEach(p => {
+      cathegorie[p.cathegorie] = (cathegorie[p.cathegorie] || 0) + 1;
+    });
+
+    return {
+      total: produitsRecents.length,
+      cathegorie
+    };
+  }
+
+  getProduitsParMoisDePeremption(): Observable<ProduitsParMoisAvecTotal> {
+    return this.http.get<any[]>(this.produitUrl).pipe(
+      map(produits => this.traiterProduitsParMois(produits))
+    );
+  }
+
+  traiterProduitsParMois(produits: any[]): ProduitsParMoisAvecTotal {
+    const maintenant = new Date();
+
+    // Initialiser les compteurs mois1 à mois5 et total
+    const result: ProduitsParMoisAvecTotal = {
+      total: 0,
+      mois1: 0,
+      mois2: 0,
+      mois3: 0,
+      mois4: 0,
+      mois5: 0
+    };
+
+    produits.forEach(p => {
+      const dateProduit = new Date(p.dateExpiration);
+
+      if (dateProduit > maintenant) {
+        const diffMois = (dateProduit.getFullYear() - maintenant.getFullYear()) * 12
+          + (dateProduit.getMonth() - maintenant.getMonth());
+
+        if (diffMois >= 0 && diffMois < 5) {
+          const key = `mois${diffMois + 1}` as keyof ProduitsParMoisAvecTotal;
+          result[key]++;
+          result.total++;
+        }
+      }
+    });
+
+    return result;
+  }
+
+
+  getTop5ProduitsFaibleQuantiteNonExpire(): Observable<Produit[]> {
+    return this.http.get<Produit[]>(this.produitUrl).pipe(
+      map(produits => {
+        const aujourdHui = new Date();
+
+        return produits
+          .filter(p => new Date(p.dateExpiration) > aujourdHui || !p.dateExpiration)           // Non expiré
+          .sort((a, b) => a.quantite - b.quantite)              // Trier par quantité croissante
+          .slice(0, 5);                                         // Prendre les 5 premiers
+      })
+    );
+  }
+
+  getTop5ProduitsPlusProchesPeremption(): Observable<Produit[]> {
+    return this.http.get<Produit[]>(this.produitUrl).pipe(
+      map(produits => {
+        const maintenant = new Date();
+
+        return produits
+          .filter(p => new Date(p.dateExpiration) < maintenant &&p.dateExpiration ) // seulement les non expirés
+          .sort((a, b) => new Date(a.dateExpiration).getTime() - new Date(b.dateExpiration).getTime()) // du plus proche au plus lointain
+          .slice(0, 5); // garder les 5 premiers
+      })
     );
   }
 

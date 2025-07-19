@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from 'src/app/material.module';
+import { ProduitService } from 'src/app/pages/produits/produit.service';
+import { Produit } from 'src/app/pages/produits/interfaces';
 
 export interface productsData {
   id: number;
@@ -65,6 +67,23 @@ const ELEMENT_DATA: productsData[] = [
   templateUrl: './top-employees.component.html',
 })
 export class AppTopEmployeesComponent {
-  displayedColumns: string[] = ['profile', 'hrate', 'skills', 'status'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['nom', 'quantite', 'emplacement','date'];
+  dataSource!:Produit[]
+
+  constructor(private produitService: ProduitService) { }
+
+  ngOnInit(): void {
+    this.produitService.getTop5ProduitsPlusProchesPeremption().subscribe({
+      next: (produits) => {
+        this.dataSource = produits;
+        console.log('Top 5 produits les plus proches de la péremption :', produits);
+      },
+      error: (err) => {
+        console.error('Erreur de récupération des produits en péremption :', err);
+      }
+    });
+  }
+
+
+
 }

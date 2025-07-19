@@ -52,7 +52,6 @@ export class ProduitTableComponent implements OnInit {
 
     this.produitService.getProduitsParCategorie(this.cathegorie, page, this.pageSize)
       .subscribe((data) => {
-        debugger
         this.dataSource.data = data;
         this.total = 50; // ou dynamique avec `X-Total-Count`
         this.loading = false;
@@ -64,11 +63,11 @@ export class ProduitTableComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.loadProduits();
   }
-  
+
   viewmore(produitId: string) {
-      this.router.navigateByUrl(`produits/${produitId}`)
+    this.router.navigateByUrl(`produits/${produitId}`)
   }
   out(produitId: string) {
-      this.router.navigateByUrl(`produits/i/${produitId}`)
+    this.router.navigateByUrl(`produits/i/${produitId}`)
   }
 }

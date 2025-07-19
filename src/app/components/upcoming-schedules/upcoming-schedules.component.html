@@ -1,31 +1,32 @@
 <mat-card class="cardWithShadow">
     <mat-card-content class="p-y-24">
-        <mat-card-title>Rupture stock</mat-card-title>
+        <mat-card-title>Produit en pénurie</mat-card-title>
+        <span class="f-s-14">Ruptures de stock selon date d'enregistrement</span>
+        <div class="timeline m-t-24 m-b-24 ">
 
-        <div class="timeline m-t-24">
-            @for(stat of stats2; track stat.subtext) {
-            <div class="timeline-item d-flex overflow-hidden">
-                <div class="time text-right f-s-14">{{ stat.time }}</div>
-                <div class="point d-flex align-items-center">
-                    <span class="timeline-badge border-{{ stat.color }} m-y-8"></span>
-                    <span class="timline-border d-block"></span>
+            @if(!!produitsFaibleQuantite){
+            @for (produit of produitsFaibleQuantite; track $index) {
+            <ng-container>
+                <div class="timeline-item d-flex overflow-hidden">
+                    <div class="time text-right f-s-14 text-muted">
+                        {{ produit.dateCreation | date:'EEE dd MMMM yyyy HH:mm' }}</div>
+                    <div class="point d-flex align-items-center">
+                        <span class="timeline-badge border-warning m-y-8"></span>
+                        <span class="timline-border d-block"></span>
+                    </div>
+
+                    <div class="desc">
+                        <span class="lh-20 f-s-14">  <strong> {{produit.quantite}}</strong> unités de <strong>{{produit.nom}}</strong></span>
+                    </div>
                 </div>
-                <div class="desc">
-                    @if(stat.subtext) {
-                    <span class="lh-20 f-s-14">{{ stat.subtext }}</span>
-                    }
-
-                    @if(stat.title) {
-                    <span class="lh-20 f-w-600 d-block f-s-14">{{
-                        stat.title
-                        }}</span>
-                    }
-
-                    @if(stat.link) {
-                    <a href="#" class="text-primary text-decoration-none f-s-14">#ML-3467</a>
-                    }
+            </ng-container>
+            }
+            }@else {
+            <ng-template>
+                <div class="text-center text-muted mt-4">
+                    💤 Aucun mouvement enregistré pour ce produit.
                 </div>
-            </div>
+            </ng-template>
             }
         </div>
     </mat-card-content>

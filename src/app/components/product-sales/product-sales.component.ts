@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +20,8 @@ import {
   ApexResponsive,
   NgApexchartsModule,
 } from 'ng-apexcharts';
+import { countProduits, ProduitsParMoisAvecTotal } from 'src/app/pages/produits/interfaces';
+import { ProduitService } from 'src/app/pages/produits/produit.service';
 
 export interface productsalesChart {
   series: ApexAxisChartSeries;
@@ -41,21 +43,38 @@ export interface productsalesChart {
   imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule],
   templateUrl: './product-sales.component.html',
 })
-export class AppProductSalesComponent {
+export class AppProductSalesComponent implements OnInit {
 
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
 
   public productsalesChart!: Partial<productsalesChart> | any;
 
+  produitsPeremption!: ProduitsParMoisAvecTotal;
 
-  constructor() {
+  constructor(private produitService: ProduitService) { }
 
+  ngOnInit(): void {
+    this.produitService.getProduitsParMoisDePeremption().subscribe({
+      next: (resultat) => {
+        this.produitsPeremption = resultat;
+        this.chartStock()
+        console.log('Produits en voie de péremption :', resultat);
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération des produits en voie de péremption :', err);
+      }
+    });
+
+  }
+
+  chartStock(): void {
+    const data = this.produitsPeremption
     this.productsalesChart = {
       series: [
         {
-          name: '',
+          name: 'Qte/Mois',
           color: '#fb977d',
-          data: [25, 66, 20, 40, 12, 58, 20],
+          data: [data.mois1 ?? 0, data.mois2 ?? 0, data.mois3 ?? 0, data.mois4 ?? 0, data.mois5 ?? 0],
         },
       ],
 
@@ -91,6 +110,6 @@ export class AppProductSalesComponent {
         },
       },
     };
-
   }
+
 }
